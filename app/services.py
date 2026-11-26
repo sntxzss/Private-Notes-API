@@ -11,3 +11,10 @@ class Conflict(Exception):
         self.message = message
         super().__init__(message)
 
+
+def get_user_by_email(email: str) -> dict | None:
+    for user in USERS.values():
+        if user["email"] == email:
+            return user
+    return None
+
