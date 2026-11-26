@@ -32,3 +32,10 @@ def register_user(email: str, password: str) -> dict:
     }
     return USERS[user_id]
 
+def authenticate_user(email: str, password: str) -> dict | None:
+    user = get_user_by_email(email)
+    if user is None:
+        return None
+    if not verify_password(password, user["password_hash"]):
+        return None
+    return user
