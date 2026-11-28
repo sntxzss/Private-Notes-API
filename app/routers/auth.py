@@ -25,3 +25,6 @@ def login(form: Annotated[OAuth2PasswordRequestForm, Depends()]):
     token = create_access_token(subject=user["email"])
     return Token(access_token=token)
 
+@router.get("/me", response_model=UserRead)
+def me(current_user: CurrentUser):
+    return current_user
